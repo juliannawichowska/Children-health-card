@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "933681429514",
+    "firebase_url": "https://children-health-card.firebaseio.com",
+    "project_id": "children-health-card",
+    "storage_bucket": "children-health-card.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933681429514:android:67ca59d28d6e7d396573f3",
+        "android_client_info": {
+          "package_name": "com.example.children_health_card"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "933681429514-oh59s19k3smdj9olguor21anbjdmbj7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.children_health_card",
+            "certificate_hash": "33f7d9841d9a18d268e99b7e32178e4dbb7f94d1"
+          }
+        },
+        {
+          "client_id": "933681429514-t3vn3929uqt8d5lsj2nt73kul2aqf574.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANHX5goLuIagJRSxFNuxhc86tnGsUgw0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "933681429514-t3vn3929uqt8d5lsj2nt73kul2aqf574.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
