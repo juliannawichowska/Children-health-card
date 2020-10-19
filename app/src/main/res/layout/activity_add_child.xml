@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Uzupełnij dane o swoim dziecku"
+        android:textSize="35dp"
+        android:textAlignment="center"
+        android:padding="30sp"
+        android:gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/child_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:hint="Podaj imię dziecka"/>
+
+    <EditText
+        android:id="@+id/child_surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:hint="Podaj nazwisko dziecka"/>
+
+    <EditText
+        android:id="@+id/child_pesel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:inputType="number"
+        android:hint="Podaj pesel dziecka"/>
+
+    <EditText
+        android:id="@+id/child_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:inputType="date"
+        android:hint="Podaj datę urodzenia dziecka"/>
+
+    <EditText
+        android:id="@+id/child_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:inputType="number"
+        android:hint="Podaj wagę dziecka (kg) " />
+
+    <EditText
+        android:id="@+id/child_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:inputType="number"
+        android:hint="Podaj wzrost dziecka (cm)"/>
+
+    <Button
+        android:id="@+id/sendChildInfoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Zatwierdź"
+        android:padding="10sp"
+        android:layout_margin="20sp"/>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
