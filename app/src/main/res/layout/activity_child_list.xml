@@ -19,4 +19,5 @@
         android:text="Dodaj dziecko do listy"
         android:padding="10sp"
         android:layout_margin="20sp"/>
+
 </LinearLayout>

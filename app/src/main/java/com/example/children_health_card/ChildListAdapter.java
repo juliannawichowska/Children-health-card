@@ -2,8 +2,6 @@ package com.example.children_health_card;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +16,11 @@ import java.util.List;
 
 public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.MyHolder> {
 
-    private Context mcontext;
+    Context context;
     List<ChildListModel> childList;
 
     public ChildListAdapter(Context context, List<ChildListModel> childList) {
-        this.mcontext = context;
+        this.context = context;
         this.childList = childList;
     }
 
@@ -41,19 +39,20 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.MyHo
         final String name = childList.get(i).getName();
         final String pesel = childList.get(i).getPesel();
 
-        //ustawianie danych lekarza
-        myHolder.name.setText(name);
-        myHolder.pesel.setText(pesel);
+        //ustawianie danych dziecka
+       myHolder.name.setText(name);
+       myHolder.pesel.setText(pesel);
 
-        //wyświetlenie profilu wybranego lekarza w momencie gdy zostanie kliknięty
+        //wyświetlenie profilu wybranego dziecka w momencie gdy zostanie kliknięty
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                    Toast.makeText(mcontext, "Kliknięto dziecko o imieniu " + name, Toast.LENGTH_LONG).show();
-                }
-
+                final Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                intent.putExtra("childEmail",name);
+                intent.putExtra("childUserUid",pesel);
+               // Toast.makeText(context, "Kliknięto dziecko o imieniu " + name, Toast.LENGTH_LONG).show();
+                v.getContext().startActivity(intent);
+            }
         });
 
     }
