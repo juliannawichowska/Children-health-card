@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-    android:id="@+id/myItem1"
-    android:title="Lista leków" />
-    <item
-        android:id="@+id/myItem2"
-        android:title="Lista wizyt" />
-    <item
-        android:id="@+id/myItem3"
-        android:title="Lista uczuleń" />
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_calendar"
+            android:title="Kalendarz" />
+        <item
+            android:id="@+id/nav_charts"
+            android:title="Siatki centylowe" />
+        <item
+            android:id="@+id/nav_lists"
+            android:title="Listy" />
+        <item
+            android:id="@+id/nav_contact"
+            android:title="Kontakt z lekarzem" />
+    </group>
 
 </menu>

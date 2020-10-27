@@ -3,54 +3,74 @@ package com.example.children_health_card;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class HomeActivity extends AppCompatActivity {
-    private ActionBarDrawerToggle toggle;
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+     ActionBarDrawerToggle toggle;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    Button btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        drawerLayout=findViewById(R.id.drawerLayout);
-        navigationView=findViewById(R.id.navView);
-        toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+
+       Toolbar toolbar = findViewById(R.id.toolbar);
+       setSupportActionBar(toolbar);
+
+        drawerLayout=findViewById(R.id.drawer_layout);
+        btn = findViewById(R.id.button);
+        navigationView=findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.myItem1:
-                        Toast.makeText(HomeActivity.this, "item1", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.myItem2:
-                        Toast.makeText(HomeActivity.this, "item2", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.myItem3:
-                        Toast.makeText(HomeActivity.this, "item3", Toast.LENGTH_SHORT).show();
-                        return true;
-                }
-                return true;
+
+        if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CalendarFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_calendar);
+        }
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent childlist = new Intent(HomeActivity.this, ChildListActivity.class);
+                startActivity(childlist);
             }
         });
 
     }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)) {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_calendar:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalendarFragment()).commit();
+                    break;
+                case R.id.nav_charts:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChartsFragment()).commit();
+                    break;
+                case R.id.nav_lists:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ListsFragment()).commit();
+                    break;
+                case R.id.nav_contact:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment()).commit();
+                    break;
+            }
+            drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
+
 }
