@@ -2,11 +2,14 @@ package com.example.children_health_card;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +27,7 @@ public class AddChildActivity extends AppCompatActivity {
     //deklaracja instancji FirebaseAuth i FirebaseDatabase
     private FirebaseAuth mAuth;
     private FirebaseDatabase firebaseDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

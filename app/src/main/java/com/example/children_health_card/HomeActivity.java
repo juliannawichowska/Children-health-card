@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     Button btn;
+    public String pickedChildName, pickedChildSurname, pickedChildPesel;
+
 
 
     @Override
@@ -43,6 +46,40 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CalendarFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_calendar);
         }
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                pickedChildName= null;
+            } else {
+                pickedChildName= extras.getString("childName");
+            }
+        } else {
+            pickedChildName= (String) savedInstanceState.getSerializable("childName");
+        }
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                pickedChildSurname= null;
+            } else {
+                pickedChildSurname= extras.getString("childSurname");
+            }
+        } else {
+            pickedChildSurname= (String) savedInstanceState.getSerializable("childSurname");
+        }
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                pickedChildPesel= null;
+            } else {
+                pickedChildPesel= extras.getString("childPesel");
+            }
+        } else {
+            pickedChildPesel= (String) savedInstanceState.getSerializable("childPesel");
+        }
+
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -68,9 +105,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.nav_contact:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment()).commit();
                     break;
+                case R.id.nav_edit:
+                    Log.v("hbbbbbb",pickedChildName);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditDataFragment()).commit();
+                    break;
             }
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 
 }

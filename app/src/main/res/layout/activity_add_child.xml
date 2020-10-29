@@ -67,6 +67,7 @@
         android:inputType="number"
         android:hint="Podaj wzrost dziecka (cm)"/>
 
+
     <Button
         android:id="@+id/sendChildInfoBtn"
         android:layout_width="wrap_content"
