@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uzupełnij dane o uczuleniu dziecka"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:padding="30sp"
+            android:gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/addAllergens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:hint="Podaj allergeny uczulenia"/>
+
+        <EditText
+            android:id="@+id/addSymptoms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:hint="Podaj symptomy"/>
+
+        <EditText
+            android:id="@+id/addNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:inputType="text"
+            android:hint="Dodaj notatkę odnośnie danego uczulenia"/>
+
+
+        <Button
+            android:id="@+id/sendAllergyInfoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Zatwierdź"
+            android:padding="10sp"
+            android:layout_margin="20sp"/>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

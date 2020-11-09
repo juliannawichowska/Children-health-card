@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -80,8 +79,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             pickedChildPesel= (String) savedInstanceState.getSerializable("childPesel");
         }
 
-
-
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent childlist = new Intent(HomeActivity.this, ChildListActivity.class);
@@ -100,7 +97,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChartsFragment()).commit();
                     break;
                 case R.id.nav_lists:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ListsFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AllergyListFragment()).commit();
                     break;
                 case R.id.nav_contact:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment()).commit();
