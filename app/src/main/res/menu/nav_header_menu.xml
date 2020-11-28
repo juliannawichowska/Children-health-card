@@ -11,8 +11,11 @@
             android:id="@+id/nav_charts"
             android:title="Siatki centylowe" />
         <item
-            android:id="@+id/nav_lists"
-            android:title="Listy" />
+            android:id="@+id/nav_allergy_list"
+            android:title="Lista alergii" />
+        <item
+            android:id="@+id/nav_medicines_list"
+            android:title="Lista leków" />
         <item
             android:id="@+id/nav_contact"
             android:title="Kontakt z lekarzem" />
