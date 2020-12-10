@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uzupełnij dane o szczepieniu"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:padding="30sp"
+            android:gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/addVaccinationType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:hint="Podaj typ szczepionki"/>
+
+        <EditText
+            android:id="@+id/addVaccinationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:inputType="date"
+            android:hint="Podaj datę przeprowadzenia szczepienia"/>
+
+        <EditText
+            android:id="@+id/addVaccinationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:inputType="text"
+            android:hint="Podaj nazwę szczepionki i ewentualny numer serii"/>
+
+        <EditText
+            android:id="@+id/addVaccinationNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:inputType="text"
+            android:hint="Dodaj notatkę odnośnie danej szczepionki"/>
+
+
+        <Button
+            android:id="@+id/sendVaccinationInfoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Zatwierdź"
+            android:padding="10sp"
+            android:layout_margin="20sp"/>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

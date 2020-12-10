@@ -102,6 +102,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.nav_medicines_list:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MedicinesListFragment()).commit();
                     break;
+                case R.id.nav_vaccination_list:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new VaccinationListFragment()).commit();
+                    break;
                 case R.id.nav_contact:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment()).commit();
                     break;

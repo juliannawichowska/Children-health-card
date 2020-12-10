@@ -17,6 +17,9 @@
             android:id="@+id/nav_medicines_list"
             android:title="Lista leków" />
         <item
+            android:id="@+id/nav_vaccination_list"
+            android:title="Lista szczepień" />
+        <item
             android:id="@+id/nav_contact"
             android:title="Kontakt z lekarzem" />
         <item

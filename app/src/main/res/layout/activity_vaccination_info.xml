@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VaccinationInfoActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Szcegółowe informacje o szczepieniu"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="25sp"
+        android:padding="25dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Typ szczepienia : "
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/showVaccinationType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="20sp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nazwa szczepionki : "
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/showVaccinationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="20sp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data wykonania szczepienia : "
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/showVaccinationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="20sp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/vaccinationNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dodatkowe informacje :"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/showVaccinationNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="20sp"
+        android:padding="10dp"/>
+
+</LinearLayout>

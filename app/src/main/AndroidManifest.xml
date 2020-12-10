@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MedicinesInfoActivity"></activity>
+        <activity android:name=".VaccinationInfoActivity"></activity>
+        <activity android:name=".AddVaccinationActivity" />
+        <activity android:name=".MedicinesInfoActivity" />
         <activity android:name=".AddMedicineActivity" />
         <activity android:name=".AllergyInfoActivity" />
         <activity android:name=".AddAllergyActivity" />

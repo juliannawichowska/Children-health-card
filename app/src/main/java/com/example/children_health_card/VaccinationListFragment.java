@@ -3,18 +3,18 @@ package com.example.children_health_card;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,14 +27,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllergyListFragment extends Fragment {
+public class VaccinationListFragment extends Fragment {
 
-    TextView Allergens, Symptoms;
+    TextView VaccinationType;
     RecyclerView recyclerView;
-    AllergyListAdapter allergyListAdapter;
-    List<AllergyListModel> allergyList;
+    VaccinationListAdapter vaccinationListAdapter;
+    List<VaccinationListModel> vaccinationList;
     Context context;
-    Button AddAllergyBtn;
+    Button AddVaccinationBtn;
 
     //deklaracja instancji FirebaseAuth, FirebaseUser, FirebaseDatabase i FirebaseReference
     FirebaseAuth firebaseAuth;
@@ -42,11 +42,9 @@ public class AllergyListFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_allergy_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_vaccination_list, container, false);
 
         //inicjacja instancji FirebaseAuth i FirebaseDatabase
         firebaseAuth =  FirebaseAuth.getInstance();
@@ -55,20 +53,19 @@ public class AllergyListFragment extends Fragment {
         //referencja do ścieżki do tabeli 'Users'
         databaseReference = firebaseDatabase.getReference("Children");
 
-        Allergens = v.findViewById(R.id.allergensTv);
-        Symptoms = v.findViewById(R.id.symptomsTv);
-        AddAllergyBtn = v.findViewById(R.id.addAllergyBtn);
+        VaccinationType = v.findViewById(R.id.vaccinationTypeTv);
+        AddVaccinationBtn = v.findViewById(R.id.addVaccinationBtn);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         //zainicjowanie Recycler View
-        recyclerView = v.findViewById(R.id.allergyList_RecyclerView);
+        recyclerView = v.findViewById(R.id.vaccinationList_RecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //zainicjowanie listy użytkowników
-        allergyList = new ArrayList<>();
+        vaccinationList = new ArrayList<>();
 
         final String namechild = getActivity().getIntent().getStringExtra("childName");
 
@@ -83,37 +80,33 @@ public class AllergyListFragment extends Fragment {
         final String childName = getActivity().getIntent().getStringExtra("childName");
 
         //pobierz wszystkich użytkowników
-        getAllAllergies(uid,  childName);
+        getAllVaccinations(uid,  childName);
 
-        AddAllergyBtn.setOnClickListener(new View.OnClickListener() {
+        AddVaccinationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addAllergy = new Intent(getContext(), AddAllergyActivity.class);
-                addAllergy.putExtra("namechild", childName);
-                startActivity(addAllergy);
+                Intent addVaccination = new Intent(getContext(), AddVaccinationActivity.class);
+                addVaccination.putExtra("namechild", childName);
+                startActivity(addVaccination);
 
             }
         });
 
         return v;
     }
-
-
-
-
-    private void getAllAllergies(String uid, String childName) {
-        //pobierz wszystkie alergie
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Children/"+ uid +"/"+childName+"/Allergies");
+    private void getAllVaccinations(String uid, String childName) {
+        //pobierz wszystkie szczepienia
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Children/"+ uid +"/"+childName+"/Vaccinations");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                allergyList.clear();
+                vaccinationList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                    AllergyListModel allergyListModel = ds.getValue(AllergyListModel.class);
-                    allergyList.add(allergyListModel);
-                    allergyListAdapter = new AllergyListAdapter(context,allergyList);
+                    VaccinationListModel vaccinationListModel = ds.getValue(VaccinationListModel.class);
+                    vaccinationList.add(vaccinationListModel);
+                    vaccinationListAdapter = new VaccinationListAdapter(context,vaccinationList);
                     //set adapter to recycler view
-                    recyclerView.setAdapter(allergyListAdapter);
+                    recyclerView.setAdapter(vaccinationListAdapter);
                 }
             }
 
