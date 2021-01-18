@@ -1,6 +1,7 @@
 package com.example.children_health_card;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -23,7 +25,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -46,6 +50,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
@@ -56,6 +62,7 @@ public class EditDataFragment extends Fragment {
     Button addPhoto, addMeasure;
     ImageView avatar;
     String mName, mSurname, mPesel;
+    String wee,hee;
 
     //deklaracja instancji FirebaseAuth, FirebaseUser, FirebaseDatabase i FirebaseReference
     FirebaseAuth firebaseAuth;
@@ -117,6 +124,12 @@ public class EditDataFragment extends Fragment {
                 showImagePickDialog();
             }
         });
+        addMeasure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMeasureDialog();
+            }
+        });
 
         //odwołanie się referencją do zmiennej userType w bazie
         DatabaseReference refe = FirebaseDatabase.getInstance().getReference();
@@ -145,6 +158,102 @@ public class EditDataFragment extends Fragment {
         return v;
 
     }
+
+    private void showMeasureDialog() {
+
+        // pobranie widoku
+        LayoutInflater li = LayoutInflater.from(getActivity());
+        View promptsView = li.inflate(R.layout.alert_dialog, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                getActivity());
+
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText weightT = (EditText) promptsView.findViewById(R.id.weight);
+
+        // budowanie dialogu
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("Zatwierdź", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // pobranie widoku
+                        LayoutInflater li = LayoutInflater.from(getActivity());
+                        View promptsView = li.inflate(R.layout.alert_dialog2, null);
+
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                                getActivity());
+
+                        alertDialogBuilder.setView(promptsView);
+
+                        final EditText heightT = (EditText) promptsView.findViewById(R.id.height);
+
+                        // ustawianie drugiego dialogu
+                        alertDialogBuilder
+                                .setCancelable(false)
+                                .setPositiveButton("Zatwierdź", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        long time = System.currentTimeMillis();
+                                        Log.v("tak", String.valueOf(time));
+
+                                        wee = weightT.getText().toString();
+                                        hee = heightT.getText().toString();
+
+                                        //utworzenie referencji do bazy
+                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+                                        //utworzenie HashMap z adresem uri
+                                        HashMap<String, Object> hashMap = new HashMap<>();
+                                        hashMap.put("weight", wee);
+                                        hashMap.put("height", hee);
+
+                                        //zaktualizowanie bazy danych o wagę i wzrost
+                                        databaseReference.child("Children/" + user.getUid() + "/" + mName + "/" + time).updateChildren(hashMap)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        //zaktualizowano pomyślnie
+                                                        pd.dismiss();
+                                                        Toast.makeText(getActivity(), "Dodano pomiary dziecka o imieniu " + mName, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        //aktualizacja nie powiodła się
+                                                        pd.dismiss();
+                                                        Toast.makeText(getActivity(), "Nie udało się dodać pomiarów", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+}})
+                                .setNegativeButton("Anuluj",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        // utworz dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+
+                        // wyswietl dialog
+                        alertDialog.show();
+
+                    }})
+
+                        .setNegativeButton("Anuluj",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // utworz dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // wyswietl dialog
+        alertDialog.show();
+                    }
 
 
 
