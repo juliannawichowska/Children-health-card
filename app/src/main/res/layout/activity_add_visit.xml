@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uzupełnij dane o wizycie dziecka"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:padding="30sp"
+            android:gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/addVisitsType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:hint="Podaj rodzaj specjalisty"/>
+
+        <EditText
+            android:id="@+id/addVisitsName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:hint="Podaj imię i nazwisko lekarza"/>
+
+        <EditText
+            android:id="@+id/addVisitsDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:inputType="text"
+            android:hint="Dodaj datę wizyty"/>
+
+        <EditText
+            android:id="@+id/addVisitsNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:inputType="text"
+            android:hint="Dodaj opcjonalną notatkę"/>
+
+
+        <Button
+            android:id="@+id/sendVisitsInfoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Zatwierdź"
+            android:padding="10sp"
+            android:layout_margin="20sp"/>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

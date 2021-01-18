@@ -251,7 +251,7 @@ public class EditDataFragment extends Fragment {
         // utworz dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
 
-        // wyswietl dialog
+        // wyświetlenie dialogu
         alertDialog.show();
                     }
 
