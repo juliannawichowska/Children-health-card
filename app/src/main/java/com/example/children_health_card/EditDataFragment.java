@@ -10,16 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
-import android.service.autofill.TextValueSanitizer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +18,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,7 +36,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -50,8 +44,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
@@ -62,7 +54,7 @@ public class EditDataFragment extends Fragment {
     Button addPhoto, addMeasure;
     ImageView avatar;
     String mName, mSurname, mPesel;
-    String wee,hee;
+    int wee,hee;
 
     //deklaracja instancji FirebaseAuth, FirebaseUser, FirebaseDatabase i FirebaseReference
     FirebaseAuth firebaseAuth;
@@ -196,19 +188,24 @@ public class EditDataFragment extends Fragment {
                                         long time = System.currentTimeMillis();
                                         Log.v("tak", String.valueOf(time));
 
-                                        wee = weightT.getText().toString();
-                                        hee = heightT.getText().toString();
+                                        databaseReference = FirebaseDatabase.getInstance().getReference().child("Children/" + user.getUid() + "/" + mName + "/" + "Measurements"+"/");
+                                        String idd = databaseReference.push().child("Measurements"+"/"+time).getKey();
+
+                                        wee = Integer.parseInt(weightT.getText().toString());
+                                        hee = Integer.parseInt(heightT.getText().toString());
 
                                         //utworzenie referencji do bazy
-                                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                       /* DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
                                         //utworzenie HashMap z adresem uri
                                         HashMap<String, Object> hashMap = new HashMap<>();
                                         hashMap.put("weight", wee);
-                                        hashMap.put("height", hee);
+                                        hashMap.put("height", hee);*/
 
+                                        DataPoint dataPoint = new DataPoint(wee, hee);
+                                        databaseReference.child(idd).setValue((dataPoint));
                                         //zaktualizowanie bazy danych o wagę i wzrost
-                                        databaseReference.child("Children/" + user.getUid() + "/" + mName + "/" + time).updateChildren(hashMap)
+                                        /*databaseReference.child("Children/" + user.getUid() + "/" + mName + "/" + "Measurements"+"/"+time).updateChildren(hashMap)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
@@ -224,7 +221,7 @@ public class EditDataFragment extends Fragment {
                                                         pd.dismiss();
                                                         Toast.makeText(getActivity(), "Nie udało się dodać pomiarów", Toast.LENGTH_SHORT).show();
                                                     }
-                                                });
+                                                });*/
 }})
                                 .setNegativeButton("Anuluj",
                                 new DialogInterface.OnClickListener() {

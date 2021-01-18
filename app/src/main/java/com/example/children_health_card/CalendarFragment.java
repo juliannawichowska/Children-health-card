@@ -1,23 +1,15 @@
 package com.example.children_health_card;
 
 
-import android.app.ProgressDialog;
-import android.content.ContentUris;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CalendarView;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,10 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,7 +53,7 @@ public class CalendarFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_calendar, container, false);
         super.onCreate(savedInstanceState);
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();       
+        firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Children");
 
         mCalendarView = (CalendarView) v.findViewById(R.id.calendarView);
@@ -100,7 +89,7 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 // make 2020-05-17 12:31:57
-                JSONObject logindata = new JSONObject();
+
                 String choosen_date;
                 if (month == 10 || month == 11) {
                     if (dayOfMonth < 10) {
@@ -231,7 +220,7 @@ public class CalendarFragment extends Fragment {
             LayoutInflater _inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (v == null) {
                 LayoutInflater inflater=LayoutInflater.from(con);
-                v = inflater.inflate(R.layout.calendar_header, null);
+                v = _inflater.inflate(R.layout.calendar_header, null);
             }
             // Set Width of ListView to MATCH_PARENT
             parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -271,9 +260,8 @@ public class CalendarFragment extends Fragment {
 
     public class CustomListAdapter extends BaseExpandableListAdapter {
         private Context con;
-        private List<String> headers;
-        private HashMap<String, ArrayList<String>> headeritems;
-
+        HashMap<String, ArrayList<String>> headeritems;
+        ArrayList<String> headers;
 
         public CustomListAdapter(Context context, HashMap<String, ArrayList<String>>listheaders , ArrayList<String>headerchilds) {
             this.con = context;
