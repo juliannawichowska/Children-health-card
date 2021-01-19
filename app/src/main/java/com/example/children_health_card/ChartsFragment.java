@@ -53,10 +53,8 @@ public class ChartsFragment extends Fragment  {
         firebaseDatabase = FirebaseDatabase.getInstance();
         user = firebaseAuth.getCurrentUser();
         //referencja do ścieżki do tabeli 'Users'
-        databaseReference = firebaseDatabase.getReference();
-        databaseReference.child("Children").child(user.getUid()).child(mName).child("Measurements");
-        //btn = v.findViewById(R.id.chartBtn);
-
+        DatabaseReference refe = FirebaseDatabase.getInstance().getReference();
+        databaseReference = refe.child("Children").child(user.getUid()).child(mName).child("Measurements");
 
         retrieveData();
         return v;
@@ -72,17 +70,17 @@ public class ChartsFragment extends Fragment  {
     }*/
 
     private void retrieveData(){
-        databaseReference.addValueEventListener(valueEventListener= new ValueEventListener()  {
+        databaseReference.addValueEventListener(new ValueEventListener()  {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Entry> dataVals = new ArrayList<>();
+                ArrayList<Entry> dataVals = new ArrayList<Entry>();
                 if(snapshot.hasChildren()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
                       DataPoint dataPoint = ds.getValue(DataPoint.class);
                       dataVals.add(new Entry(dataPoint.getxValue(), dataPoint.getyValue()));
-
+                        Log.v(TAG, "i am here  " + dataVals );
                     }
-                    Log.v(TAG, "i am here");
+
                     showChart(dataVals);
 
                 }else{
