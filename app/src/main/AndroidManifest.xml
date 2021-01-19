@@ -13,12 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddOperationsActivity"></activity>
+        <activity android:name=".ContactsInfoActivity"></activity>
+        <activity android:name=".AddOperationsActivity" />
         <activity android:name=".OperationsInfoActivity" />
         <activity android:name=".VisitsInfoActivity" />
         <activity android:name=".AddVisitActivity" />
         <activity android:name=".VaccinationInfoActivity" />
         <activity android:name=".AddVaccinationActivity" />
+        <activity android:name=".AddContactsActivity" />
         <activity android:name=".MedicinesInfoActivity" />
         <activity android:name=".AddMedicineActivity" />
         <activity android:name=".AllergyInfoActivity" />
