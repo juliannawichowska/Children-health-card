@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,7 @@ public class ContactsInfoActivity extends AppCompatActivity {
 
     TextView ContactsType, ContactsName, ContactsNumber, ContactsAddress;
     String childName, allerg;
+    Button callBtn;
 
     //deklaracja instancji FirebaseAuth, FirebaseUser, FirebaseDatabase i FirebaseReference
     FirebaseAuth firebaseAuth;
@@ -39,6 +42,8 @@ public class ContactsInfoActivity extends AppCompatActivity {
         ContactsName = findViewById(R.id.showContactsName);
         ContactsNumber = findViewById(R.id.showContactsNumber);
         ContactsAddress = findViewById(R.id.showContactsAddress);
+        callBtn = findViewById(R.id.CallBtn);
+
 
         //inicjacja instancji FirebaseAuth i FirebaseDatabase
         firebaseAuth =  FirebaseAuth.getInstance();
@@ -126,6 +131,32 @@ public class ContactsInfoActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //odwołanie się referencją do zmiennej symptoms w bazie
+                DatabaseReference refes = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference refss = refes.child("Children").child(user.getUid()).child("Contacts").child(doctorName).child("doctorNumber");
+
+
+                //wyczytanie za pomocą referencji wartości zmiennej w bazie
+                refss.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String phone = dataSnapshot.getValue(String.class);
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
+            }
+        });
+
 
     }
 
