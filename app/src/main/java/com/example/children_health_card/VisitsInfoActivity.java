@@ -55,6 +55,8 @@ public class VisitsInfoActivity extends AppCompatActivity {
 
         Log.v("tal", typeee);
 
+        getSupportActionBar().setTitle("Wizyty");
+
 
         //odwołanie się referencją do zmiennej type w bazie
         DatabaseReference refe = FirebaseDatabase.getInstance().getReference();

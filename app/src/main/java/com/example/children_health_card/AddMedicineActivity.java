@@ -41,6 +41,8 @@ public class AddMedicineActivity extends AppCompatActivity {
         //inicjacja instancji FirebaseDatabase
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setTitle("Dodawanie leku");
+
         Intent intent = getIntent();
         final String childName = intent.getStringExtra("namechild");
 

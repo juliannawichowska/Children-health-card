@@ -44,6 +44,8 @@ public class AllergyInfoActivity extends AppCompatActivity {
         firebaseAuth =  FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setTitle("Alergie");
+
         //pobranie aktualnie zalogowanego użytkownika
         user = firebaseAuth.getCurrentUser();
 

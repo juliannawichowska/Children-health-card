@@ -49,6 +49,8 @@ public class ContactsInfoActivity extends AppCompatActivity {
         firebaseAuth =  FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setTitle("Kontakty");
+
         //pobranie aktualnie zalogowanego użytkownika
         user = firebaseAuth.getCurrentUser();
 

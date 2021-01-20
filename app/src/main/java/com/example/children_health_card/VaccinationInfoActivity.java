@@ -41,6 +41,8 @@ public class VaccinationInfoActivity extends AppCompatActivity {
         firebaseAuth =  FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setTitle("Szczepienia");
+
         //pobranie aktualnie zalogowanego użytkownika
         user = firebaseAuth.getCurrentUser();
 

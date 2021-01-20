@@ -36,6 +36,8 @@ public class AddVaccinationActivity extends AppCompatActivity {
         addVaccinationDate = findViewById(R.id.addVaccinationDate);
         addVaccinationNote = findViewById(R.id.addVaccinationNote);
 
+        getSupportActionBar().setTitle("Dodawanie szczepienia");
+
         //inicjacja instancji FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
         //inicjacja instancji FirebaseDatabase

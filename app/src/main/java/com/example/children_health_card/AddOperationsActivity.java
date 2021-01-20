@@ -42,6 +42,8 @@ public class AddOperationsActivity extends AppCompatActivity {
         //inicjacja instancji FirebaseDatabase
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setTitle("Dodawanie operacji");
+
         Intent intent = getIntent();
         final String childName = intent.getStringExtra("namechild");
 

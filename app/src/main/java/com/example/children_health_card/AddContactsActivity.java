@@ -43,6 +43,8 @@ public class AddContactsActivity extends AppCompatActivity {
         //inicjacja instancji FirebaseDatabase
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setTitle("Dodawanie kontaktu");
+
         Intent intent = getIntent();
         final String childName = intent.getStringExtra("namechild");
 

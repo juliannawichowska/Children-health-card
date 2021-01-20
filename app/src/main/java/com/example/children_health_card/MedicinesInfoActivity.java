@@ -37,6 +37,8 @@ public class MedicinesInfoActivity extends AppCompatActivity {
         note = findViewById(R.id.showNote);
         extraInfo = findViewById(R.id.textNote);
 
+        getSupportActionBar().setTitle("Leki");
+
         //inicjacja instancji FirebaseAuth i FirebaseDatabase
         firebaseAuth =  FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();

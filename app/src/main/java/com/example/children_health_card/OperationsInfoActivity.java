@@ -46,6 +46,8 @@ public class OperationsInfoActivity extends AppCompatActivity {
         //pobranie aktualnie zalogowanego użytkownika
         user = firebaseAuth.getCurrentUser();
 
+        getSupportActionBar().setTitle("Operacje");
+
         Intent intent = getIntent();
         final String noteee = intent.getStringExtra("note");
 

@@ -38,6 +38,8 @@ public class AddAllergyActivity extends AppCompatActivity {
         note = findViewById(R.id.addNote);
         allergens = findViewById(R.id.addAllergens);
 
+        getSupportActionBar().setTitle("Dodawanie alergii");
+
         //inicjacja instancji FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
         //inicjacja instancji FirebaseDatabase

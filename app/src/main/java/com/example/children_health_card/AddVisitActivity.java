@@ -43,6 +43,8 @@ public class AddVisitActivity extends AppCompatActivity {
         //inicjacja instancji FirebaseDatabase
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        getSupportActionBar().setTitle("Dodawanie wizyty");
+
         Intent intent = getIntent();
         final String childName = intent.getStringExtra("namechild");
 

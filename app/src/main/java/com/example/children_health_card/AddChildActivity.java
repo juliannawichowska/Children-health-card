@@ -42,6 +42,8 @@ public class AddChildActivity extends AppCompatActivity {
         date = findViewById(R.id.child_date);
         pesel = findViewById(R.id.child_pesel);
 
+        getSupportActionBar().setTitle("Dodawanie dziecka");
+
         //inicjacja instancji FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
         //inicjacja instancji FirebaseDatabase
