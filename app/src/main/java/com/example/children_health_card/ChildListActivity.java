@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -106,10 +107,15 @@ public class ChildListActivity extends AppCompatActivity {
                 childList.clear();
                 for(DataSnapshot ds: dataSnapshot.getChildren()) {
                     ChildListModel childListModel = ds.getValue(ChildListModel.class);
-                    childList.add(childListModel);
-                    childListAdapter = new ChildListAdapter(context,childList);
-                    //set adapter to recycler view
-                    recyclerView.setAdapter(childListAdapter);
+                    String nazwa = String.valueOf(childListModel);
+                    if(nazwa.equals("com.example.children_health_card.ChildListModel@b0bea5c")){
+
+                    }else {
+                        childList.add(childListModel);
+                        childListAdapter = new ChildListAdapter(context, childList);
+                        //set adapter to recycler view
+                        recyclerView.setAdapter(childListAdapter);
+                    }
                 }
 
 
