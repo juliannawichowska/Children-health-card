@@ -98,6 +98,14 @@ public class MedicinesListFragment extends Fragment {
         return v;
     }
 
+    public void onResume(){
+        super.onResume();
+        // Set title bar
+        ((HomeActivity) getActivity())
+                .setActionBarTitle("Lista leków");
+
+    }
+
     private void getAllMedicines(String uid, String childName) {
         //pobierz wszystkie daty
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Children/"+ uid +"/"+childName+"/Medicines");

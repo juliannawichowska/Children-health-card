@@ -57,6 +57,8 @@ public class ChildListActivity extends AppCompatActivity {
         //referencja do ścieżki do tabeli 'Users'
         databaseReference = firebaseDatabase.getReference("Children");
 
+        getSupportActionBar().setTitle("Wybór dziecka");
+
         avatar = findViewById(R.id.profilePicture);
         name = findViewById(R.id.nameTv);
         pesel = findViewById(R.id.peselTv);
@@ -93,6 +95,7 @@ public class ChildListActivity extends AppCompatActivity {
         });
 
     }
+
 
     private void getAllChildren(String uid) {
         //pobierz wszystkie daty

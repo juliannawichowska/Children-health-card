@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     //deklaracja instancji FirebaseAuth i FirebaseDatabase
     private FirebaseAuth mAuth;
     private FirebaseDatabase firebaseDatabase;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         //inicjacja instancji FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
+
+        getSupportActionBar().setTitle("Rejestracja");
 
         //reakcja na kliknięciu przycisku "Zarejestruj się"
         registerBtnn.setOnClickListener(new View.OnClickListener() {
@@ -109,5 +113,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

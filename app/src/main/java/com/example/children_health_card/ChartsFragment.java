@@ -69,6 +69,14 @@ public class ChartsFragment extends Fragment  {
 
     }*/
 
+    public void onResume(){
+        super.onResume();
+        // Set title bar
+        ((HomeActivity) getActivity())
+                .setActionBarTitle("Wykresy");
+
+    }
+
     private void retrieveData(){
         databaseReference.addValueEventListener(new ValueEventListener()  {
             @Override

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText emailTxt, passwordTxt;
     Button loginBtn, registerBtn;
+    Context context;
 
     //deklaracja instancji FirebaseAuth i FirebaseAuth.AuthStateListener
     private FirebaseAuth mAuth;
@@ -43,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //inicjacja instancji FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
+
+        getSupportActionBar().setTitle("Logowanie");
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @SuppressLint("ShowToast")
@@ -114,4 +118,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

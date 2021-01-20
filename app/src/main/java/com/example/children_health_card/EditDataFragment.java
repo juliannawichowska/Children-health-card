@@ -194,34 +194,9 @@ public class EditDataFragment extends Fragment {
                                         wee = Integer.parseInt(weightT.getText().toString());
                                         hee = Integer.parseInt(heightT.getText().toString());
 
-                                        //utworzenie referencji do bazy
-                                       /* DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
-                                        //utworzenie HashMap z adresem uri
-                                        HashMap<String, Object> hashMap = new HashMap<>();
-                                        hashMap.put("weight", wee);
-                                        hashMap.put("height", hee);*/
-
                                         DataPoint dataPoint = new DataPoint(wee, hee);
                                         databaseReference.child(idd).setValue((dataPoint));
                                         //zaktualizowanie bazy danych o wagę i wzrost
-                                        /*databaseReference.child("Children/" + user.getUid() + "/" + mName + "/" + "Measurements"+"/"+time).updateChildren(hashMap)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        //zaktualizowano pomyślnie
-                                                        pd.dismiss();
-                                                        Toast.makeText(getActivity(), "Dodano pomiary dziecka o imieniu " + mName, Toast.LENGTH_SHORT).show();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        //aktualizacja nie powiodła się
-                                                        pd.dismiss();
-                                                        Toast.makeText(getActivity(), "Nie udało się dodać pomiarów", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });*/
 }})
                                 .setNegativeButton("Anuluj",
                                 new DialogInterface.OnClickListener() {

@@ -160,6 +160,13 @@ public class CalendarFragment extends Fragment {
 
     }
 
+    public void onResume(){
+        super.onResume();
+        // Set title bar
+        ((HomeActivity) getActivity())
+                .setActionBarTitle("Kalendarz");
+
+    }
 
    /* private class CustomListAdapter extends BaseExpandableListAdapter {
 

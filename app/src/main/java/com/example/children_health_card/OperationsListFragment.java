@@ -94,6 +94,14 @@ public class OperationsListFragment extends Fragment {
         return v;
     }
 
+    public void onResume(){
+        super.onResume();
+        // Set title bar
+        ((HomeActivity) getActivity())
+                .setActionBarTitle("Lista operacji");
+
+    }
+
     private void getAllOperations(String uid, String childName) {
         //pobierz wszystkie alergie
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Children/"+ uid +"/"+childName+"/Operations");

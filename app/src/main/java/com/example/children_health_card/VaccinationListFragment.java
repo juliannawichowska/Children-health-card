@@ -94,6 +94,15 @@ public class VaccinationListFragment extends Fragment {
 
         return v;
     }
+
+    public void onResume(){
+        super.onResume();
+        // Set title bar
+        ((HomeActivity) getActivity())
+                .setActionBarTitle("Lista szczepień");
+
+    }
+
     private void getAllVaccinations(String uid, String childName) {
         //pobierz wszystkie szczepienia
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Children/"+ uid +"/"+childName+"/Vaccinations");

@@ -94,6 +94,14 @@ public class VisitsListFragment extends Fragment {
         return v;
     }
 
+    public void onResume(){
+        super.onResume();
+        // Set title bar
+        ((HomeActivity) getActivity())
+                .setActionBarTitle("Lista wizyt");
+
+    }
+
     private void getAllVisits(String uid, String childName) {
         //pobierz wszystkie alergie
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Children/"+ uid +"/"+childName+"/Visits");

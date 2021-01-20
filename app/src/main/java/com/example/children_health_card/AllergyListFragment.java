@@ -98,7 +98,13 @@ public class AllergyListFragment extends Fragment {
         return v;
     }
 
+    public void onResume(){
+        super.onResume();
+        // Set title bar
+        ((HomeActivity) getActivity())
+                .setActionBarTitle("Lista alergii");
 
+    }
 
 
     private void getAllAllergies(String uid, String childName) {
