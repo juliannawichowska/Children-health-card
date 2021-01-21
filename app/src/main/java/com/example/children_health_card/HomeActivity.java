@@ -13,16 +13,34 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
      ActionBarDrawerToggle toggle;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     Button btn;
+    String mName, mSurname;
     public String pickedChildName, pickedChildSurname, pickedChildPesel;
 
+    TextView textView;
+    ImageView avatar;
+
+    //deklaracja instancji FirebaseAuth, FirebaseUser, FirebaseDatabase i FirebaseReference
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
 
 
     @Override
@@ -30,16 +48,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //inicjacja instancji FirebaseAuth i FirebaseDatabase
+        firebaseAuth =  FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        //pobranie aktualnie zalogowanego użytkownika
+        user = firebaseAuth.getCurrentUser();
+
        Toolbar toolbar = findViewById(R.id.toolbar);
        setSupportActionBar(toolbar);
 
         drawerLayout=findViewById(R.id.drawer_layout);
         btn = findViewById(R.id.button);
         navigationView=findViewById(R.id.nav_view);
+        textView = (TextView)navigationView.getHeaderView(0).findViewById(R.id.navTxt);
+        avatar = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.navImg);
         navigationView.setNavigationItemSelectedListener(this);
         toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        mName = getIntent().getStringExtra("childName");
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CalendarFragment()).commit();
@@ -86,6 +115,32 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+        //odwołanie się referencją do zmiennej userType w bazie
+        DatabaseReference refe = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = refe.child("Children").child(user.getUid()).child(mName);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                textView.setText(dataSnapshot.child("name").getValue().toString());
+
+                //załadowanie zdjęcia profilowego z bazy danych
+                try {
+                    String img = dataSnapshot.child("imageURL").getValue().toString();
+                    Picasso.get().load(img).into(avatar);
+                } catch (Exception e){
+                    Picasso.get().load(R.mipmap.ic_launcher_round).into(avatar);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
     }
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
