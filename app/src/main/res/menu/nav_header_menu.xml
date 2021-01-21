@@ -9,27 +9,35 @@
             android:title="Kalendarz" />
         <item
             android:id="@+id/nav_charts"
-            android:title="Siatki centylowe" />
+            android:title="Siatki centylowe"
+            android:icon="@drawable/ic_baseline_graphic_eq_24"/>
         <item
             android:id="@+id/nav_visits_list"
+            android:icon="@drawable/ic_baseline_format_list_bulleted_24"
             android:title="Lista wizyt" />
         <item
             android:id="@+id/nav_allergy_list"
+            android:icon="@drawable/ic_baseline_format_list_bulleted_24"
             android:title="Lista alergii" />
         <item
             android:id="@+id/nav_medicines_list"
+            android:icon="@drawable/ic_baseline_format_list_bulleted_24"
             android:title="Lista leków" />
         <item
             android:id="@+id/nav_vaccination_list"
+            android:icon="@drawable/ic_baseline_format_list_bulleted_24"
             android:title="Lista szczepień" />
         <item
             android:id="@+id/nav_operations_list"
+            android:icon="@drawable/ic_baseline_format_list_bulleted_24"
             android:title="Lista operacji" />
         <item
             android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_baseline_local_phone_24"
             android:title="Kontakt z lekarzem" />
         <item
             android:id="@+id/nav_edit"
+            android:icon="@drawable/ic_baseline_settings_24"
             android:title="Edycja danych" />
     </group>
 

@@ -28,8 +28,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
-            android:padding="40dp"
+            android:layout_margin="20dp"
             android:text="Wróc do listy dzieci" />
 
         <FrameLayout
